@@ -1,0 +1,61 @@
+.background {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(145, 118, 170, 0.171);
+}
+
+.modal {
+    position: fixed;
+    top: 40%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    border-radius: 8px;
+    width: 150px;
+    padding: 10px;
+}
+
+.lista {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 0.5em;
+}
+
+.itemLista {
+    color: #5C5C5C;
+    font-weight: 300;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.itemLista img {
+    width: 30px;
+    border-radius: 100%;
+}
+
+.salvar {
+    display: flex;
+    justify-content: center;
+}
+
+.botaoColorido {
+    width: 50px;
+    height: 25px;
+    border-radius: 1.5em;
+    cursor: pointer;
+    font-size: 0.7em;
+    color: #FFF;
+    border: none;
+    background: rgb(198,128,174);
+    background: linear-gradient(90deg, rgba(198,128,174,1) 0%, rgba(151,79,207,1) 100%); 
+}

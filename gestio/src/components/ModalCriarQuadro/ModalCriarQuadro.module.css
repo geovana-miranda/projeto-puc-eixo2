@@ -1,0 +1,177 @@
+.background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(145, 118, 170, 0.514);
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    padding: 1em;
+    border-radius: 8px;
+    width: 380px;
+}
+
+.cabecalhoModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cabecalhoModal h3 {
+    color: #464646;
+    font-weight: 400;
+
+}
+
+.cabecalhoModal img {
+    width: 300px;
+    border-radius: 1em;
+}
+
+.formulario {
+    margin-top: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.spanModal {
+    display: flex;
+    color:#464646;
+    font-weight: 400;
+}
+
+.inputModal {
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #464646;
+    font-weight: 400;
+    font-size: 1em;
+    color:#464646;
+    margin: 0.5em 0;
+    outline: none;
+}
+
+.botoes {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.botoes button {
+    width: 130px;
+    height: 30px;
+    border-radius: 1em;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.botao {
+    border: 1px solid #464646;
+    background: none;
+    color: #464646;
+}
+
+.botaoColorido {
+    color: #FFF;
+    border: none;
+    background: rgb(198,128,174);
+    background: linear-gradient(90deg, rgba(198,128,174,1) 0%, rgba(151,79,207,1) 100%); 
+}
+
+.msgErro {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.8em;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    opacity: 0.7;
+    background-color: #ffbbbb;
+    padding: 5px;
+    width: 280px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    margin-top: -10px;
+}
+
+.icone {
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+  
+  .dropdownItem {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  .dropdownItem span {
+    color: #464646;
+
+    }
+  
+  .dropdownItem:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+.membros {
+    margin-top: 0.7em;
+    display: flex;
+    align-items: normal;
+    justify-content: space-between;
+    color: #464646;
+    border-top: 1px solid #464646;
+    border-bottom: 1px solid #464646;
+    padding: 0.15em;
+}
+
+.membros img {
+    border-radius: 100%;
+    width: 40px;
+}
+
+.dados {
+    display: flex;
+    flex-direction: column;
+    margin-left: -3.5em;
+}
+
+.email {
+    font-size: 0.8em;
+}
+
+.remover {
+    font-size: 0.6em;
+    cursor: pointer;
+}

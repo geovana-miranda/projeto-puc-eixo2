@@ -1,0 +1,21 @@
+.criarTarefa{
+    cursor: pointer;
+    color: #5C5C5C;
+    font-weight: 400;
+    padding: 0.4em;
+    padding-left: 1em;
+    
+}
+
+.inputCriarTarefa{
+    border: none;
+    padding: 0.53em;
+    color: #5C5C5C;
+    font-weight: 400;
+    font-size: 1em;
+    padding-left: 1.4em;
+    outline: none;
+    border-bottom-left-radius: 0.8em;
+    border-bottom-right-radius: 0.8em;
+
+}

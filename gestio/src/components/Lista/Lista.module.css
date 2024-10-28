@@ -1,0 +1,60 @@
+.containerLista {
+    background-color: #FFF;
+    width: 220px;
+    height:auto;
+    border-radius: 0.8em;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(217,217,217,1);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(217,217,217,1);
+    box-shadow: 0px 0px 5px 3px rgba(217,217,217,1);
+}
+
+.cabecalhoLista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 220px;
+    border-top-left-radius: 0.8em;
+    border-top-right-radius: 0.8em;
+    background: rgb(151,79,207);
+    background: linear-gradient(90deg, rgba(151,79,207,0.5) 0%, rgba(198, 128, 173, 0.5) 100%);
+    color: #FFF;
+    font-weight: 400;
+    padding: 0.4em 1em 0.4em 1.4em;
+    box-sizing: border-box;
+}
+
+.itemLista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4em 1em 0.4em 1.4em;
+    box-sizing: border-box;
+    color: #5C5C5C;
+    font-weight: 400;
+    border-bottom: 1px solid #5c5c5c33;
+}
+
+.prioridadeBaixa {
+    color: green;
+}
+
+.prioridadeMedia {
+    color: yellow;
+}
+
+.prioridadeAlta {
+    color: red;
+}
+
+.inputLista {
+    width: 120px;
+    border-radius: 1.2em;
+    background-color: transparent;
+    color: #FFF;
+    font-weight: 400;
+    font-size: 1em;
+    padding: 0.2em;
+    border: none;
+    outline: none;
+
+}

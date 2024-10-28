@@ -1,0 +1,57 @@
+.background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(145, 118, 170, 0.514);
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    padding: 0.5em;
+    border-radius: 8px;
+    width: 400px;
+}
+
+.modal h3 {
+    color: #464646;
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
+.botoes {
+    width: 400px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.botoes button {
+    width: 120px;
+    height: 30px;
+    border-radius: 1em;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.botao {
+    border: 1px solid #464646;
+    background: none;
+    color: #464646;
+}
+
+.botaoColorido {
+        color: #FFF;
+        border: none;
+        background: rgb(198,128,174);
+        background: linear-gradient(90deg, rgba(198,128,174,1) 0%, rgba(151,79,207,1) 100%); 
+}
