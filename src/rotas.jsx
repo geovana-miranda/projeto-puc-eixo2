@@ -4,6 +4,7 @@ import { UsuarioProvider } from "./context/UsuarioContext";
 import Cadastro from "./pages/Cadastro/Cadastro";
 import Inicio from "./pages/Inicio/Inicio";
 import MeuQuadro from "./pages/MeuQuadro/MeuQuadro";
+import MinhaConta from "./pages/MinhaConta/MinhaConta";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
           <Route path="/" element={<Cadastro />} />
           <Route path="/home" element={<Inicio />} />
           <Route path="/meuquadro" element={<MeuQuadro />} />
+          <Route path="/minhaconta" element={<MinhaConta />} />
+
         </Routes>
       </UsuarioProvider>
     </BrowserRouter>

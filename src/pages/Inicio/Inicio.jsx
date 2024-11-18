@@ -3,7 +3,6 @@ import styles from "./Inicio.module.css";
 import { useContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { UsuarioContext } from "../../context/UsuarioContext";
-import { v4 as uuidv4 } from "uuid";
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import ModalCriarQuadro from "../../components/ModalCriarQuadro/ModalCriarQuadro";
@@ -20,14 +19,11 @@ const Inicio = () => {
   const [usuariosCarregados, setUsuariosCarregados] = useState(false);
 
   const [quadros, setQuadros] = useState([]);
-  const [tituloQuadro, setTituloQuadro] = useState("");
-  const [imagemQuadro, setImagemQuadro] = useState(
-    "https://cdn.blablacar.com/wp-content/uploads/br/2024/05/05094506/como-planejar-uma-viagem.webp"
-  );
+
   const [abrirModalCriar, setAbrirModalCriar] = useState(false);
-  const [membros, setMembros] = useState([]);
   const [pesquisa, setPesquisa] = useState("");
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
+  const [pesquisando, setPesquisando] = useState(false);
 
   useEffect(() => {
     const usuariosSalvos = localStorage.getItem("usuarios");
@@ -51,47 +47,13 @@ const Inicio = () => {
     setQuadros(quadrosUsuarios || []);
   }, [usuarioAtual]);
 
-  const criarQuadro = (titulo, membros) => {
-    const quadroCriado = {
-      titulo: titulo,
-      id: uuidv4(),
-      admin: usuarioAtual.id,
-      membros: membros.map((item) => item.id),
-    };
+  const meusQuadros = quadros.filter(
+    (item) => !item.membros || item.membros.length === 0
+  );
 
-    const quadrosAtualizadosUsuario = [...quadros, quadroCriado];
-
-    const usuariosAtualizados = usuarios.map((item) => {
-      if (item.id === usuarioAtual.id) {
-        return { ...item, quadros: quadrosAtualizadosUsuario };
-      }
-
-      const membrosAtualizados = membros.some(
-        (membro) => item.id === membro.id
-      );
-      if (membrosAtualizados) {
-        return {
-          ...item,
-          quadros: [...(item.quadros || []), quadroCriado],
-        };
-      }
-
-      return item;
-    });
-
-    localStorage.setItem("usuarios", JSON.stringify(usuariosAtualizados));
-
-    setUsuarioAtual((usuarioAtual) => ({
-      ...usuarioAtual,
-      quadros: quadrosAtualizadosUsuario,
-    }));
-
-    setUsuarios(usuariosAtualizados);
-
-    setTituloQuadro("");
-    setMembros([]);
-  };
-
+  const quadrosCompartilhados = quadros.filter(
+    (item) => item.membros && item.membros.length > 0
+  );
 
   return (
     <div className={styles.pagina}>
@@ -108,9 +70,9 @@ const Inicio = () => {
               onChange={(e) => {
                 const quadroPesquisa = e.target.value;
                 setPesquisa(quadroPesquisa);
-  
+
                 let quadrosFiltrados;
-  
+
                 if (quadroPesquisa === "") {
                   quadrosFiltrados = [];
                 } else {
@@ -120,6 +82,15 @@ const Inicio = () => {
                       .startsWith(quadroPesquisa.toLowerCase())
                   );
                 }
+
+                if (e.target.value) {
+                  setPesquisando(true);
+                }
+
+                if (!e.target.value) {
+                  setPesquisando(false);
+                }
+                
                 setResultadoPesquisa(quadrosFiltrados);
               }}
               value={pesquisa}
@@ -128,12 +99,19 @@ const Inicio = () => {
         </div>
 
         <div className={styles.quadros}>
-          {resultadoPesquisa.length > 0 ? (
-            <Pesquisa
-              resultadoPesquisa={resultadoPesquisa}
-              quadros={quadros}
-              usuarioAtual={usuarioAtual}
-            />
+          {pesquisando ? (
+            <>
+              <h3 className={styles.tituloQuadros}>Resultado da pesquisa</h3>
+              {resultadoPesquisa.length > 0 && (
+                <Pesquisa
+                  resultadoPesquisa={resultadoPesquisa}
+                  quadros={quadros}
+                  usuarioAtual={usuarioAtual}
+                />
+              )}
+
+              {resultadoPesquisa.length <= 0 && <p className={styles.naoEncontrado}>Nenhum quadro foi encontrado.</p>}
+            </>
           ) : (
             <>
               <div className={styles.criarQuadro}>
@@ -151,21 +129,39 @@ const Inicio = () => {
                   quadros={quadros}
                   abrirModalCriar={abrirModalCriar}
                   setAbrirModalCriar={setAbrirModalCriar}
-                  tituloQuadro={tituloQuadro}
-                  setTituloQuadro={setTituloQuadro}
-                  novoQuadro={(titulo, membros) => criarQuadro(titulo, membros)}
-                  membros={membros}
-                  setMembros={setMembros}
                   usuarioAtual={usuarioAtual}
+                  setUsuarioAtual={setUsuarioAtual}
                 />
               </div>
 
-              <Quadro
-                quadros={quadros}
-                setQuadros={setQuadros}
-                usuarioAtual={usuarioAtual}
-                setUsuarioAtual={setUsuarioAtual}
-              />
+              {meusQuadros.length > 0 && (
+                <>
+                  <h3 className={styles.tituloQuadros}>Meus quadros</h3>
+                  <Quadro
+                    quadrosExibidos={meusQuadros}
+                    quadros={quadros}
+                    setQuadros={setQuadros}
+                    usuarioAtual={usuarioAtual}
+                    setUsuarioAtual={setUsuarioAtual}
+                  />
+                </>
+              )}
+
+              {quadrosCompartilhados.length > 0 && (
+                <>
+                  <h3 className={styles.tituloQuadros}>
+                    Quadros compartilhados
+                  </h3>
+
+                  <Quadro
+                    quadrosExibidos={quadrosCompartilhados}
+                    quadros={quadros}
+                    setQuadros={setQuadros}
+                    usuarioAtual={usuarioAtual}
+                    setUsuarioAtual={setUsuarioAtual}
+                  />
+                </>
+              )}
             </>
           )}
         </div>

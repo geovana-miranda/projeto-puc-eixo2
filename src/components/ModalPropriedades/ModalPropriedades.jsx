@@ -13,7 +13,7 @@ const ModalPropriedades = ({
   return (
     <section className={styles.background}>
       <div className={styles.modal}>
-        <div>
+        <div className={styles.espaco}>
           <span>Prioridade</span>
           <select
             className={styles.prioridade}
@@ -25,8 +25,8 @@ const ModalPropriedades = ({
             <option value="alta">Alta</option>
           </select>
         </div>
-        <div className={styles.propriedades}>
-          <div>
+        <div className={styles.propriedades && espaco}>
+          <div className={styles.espaco}>
             <span>Data de início:</span>
             <input
               type="date"
@@ -36,7 +36,7 @@ const ModalPropriedades = ({
             />
           </div>
 
-          <div>
+          <div className={styles.espaco}>
             <span>Data de término:</span>
             <input
               type="date"
@@ -53,7 +53,7 @@ const ModalPropriedades = ({
                 setAbrirModalPropriedades(!abrirModalPropriedades)
               }
             >
-              OK
+              Salvar
             </button>
           </div>
         </div>

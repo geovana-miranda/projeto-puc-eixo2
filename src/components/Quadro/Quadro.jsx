@@ -7,20 +7,18 @@ import { useNavigate } from "react-router-dom";
 
 import ModalAlterarQuadro from "../ModalAlterarQuadro/ModalAlterarQuadro";
 
-const Quadro = ({ quadros, setQuadros, usuarioAtual, setUsuarioAtual }) => {
+const Quadro = ({
+  quadros,
+  setQuadros,
+  usuarioAtual,
+  setUsuarioAtual,
+  quadrosExibidos,
+}) => {
   const { usuarios, setUsuarios } = useContext(UsuarioContext);
 
   const [quadroSelecionado, setQuadroSelecionado] = useState("");
   const [abrirModalAlterar, setAbrirModalAlterar] = useState(false);
   const navigate = useNavigate();
-
-  const meusQuadros = quadros.filter(
-    (item) => !item.membros || item.membros.length === 0
-  );
-
-  const quadrosCompartilhados = quadros.filter(
-    (item) => item.membros && item.membros.length > 0
-  );
 
   const abrirQuadro = (quadro) => {
     navigate("/meuquadro", { state: { quadro, usuarioAtual } });
@@ -42,11 +40,19 @@ const Quadro = ({ quadros, setQuadros, usuarioAtual, setUsuarioAtual }) => {
     localStorage.setItem("usuarios", JSON.stringify(usuariosAtualizados));
   };
 
-  const alterarQuadro = (quadro, titulo, idMembros) => {
+  const alterarQuadro = (
+    quadro,
+    titulo,
+    idMembros,
+    imagemQuadro,
+    nomeImagem
+  ) => {
     const quadroAlterado = {
       ...quadro,
       titulo: titulo,
       membros: idMembros || [],
+      imagem: imagemQuadro,
+      nomeImagem: nomeImagem,
     };
 
     const usuariosAtualizados = usuarios.map((usuario) => {
@@ -62,7 +68,8 @@ const Quadro = ({ quadros, setQuadros, usuarioAtual, setUsuarioAtual }) => {
       if (!idMembros.includes(usuario.id)) {
         return {
           ...usuario,
-          quadros: usuario.quadros.filter((item) => item.id !== quadro.id) || [],
+          quadros:
+            usuario.quadros.filter((item) => item.id !== quadro.id) || [],
         };
       } else {
         const quadrosMembro = usuario.quadros.filter(
@@ -107,62 +114,39 @@ const Quadro = ({ quadros, setQuadros, usuarioAtual, setUsuarioAtual }) => {
 
   return (
     <>
-      {meusQuadros.length > 0 && (
-        <>
-          <h3 className={styles.tituloQuadros}>Meus quadros</h3>
-          <ul className={styles.meusQuadros}>
-            {meusQuadros.map((quadro) => (
-              <li className={styles.itemLista} key={quadro.id}>
-                <div className={styles.infoQuadro}>
-                  <img
-                    src="https://cdn.blablacar.com/wp-content/uploads/br/2024/05/05094506/como-planejar-uma-viagem.webp"
-                    alt="imagem de cada do quadro {quadro.titulo}"
-                  />
-                  <p className={styles.tituloQuadro} onClick={() => abrirQuadro(quadro)}>{quadro.titulo}</p>
-                  {quadro.dataAtualizacao ? <span className={styles.atualizado}>{calcularTempoDesdeAtualizacao(quadro.dataAtualizacao)}</span> : "" }
-                </div>
+      <ul className={styles.meusQuadros}>
+        {quadrosExibidos.map((quadro) => (
+          <li className={styles.itemLista} key={quadro.id}>
+            <div className={styles.infoQuadro}>
+              <div
+                className={styles.tituloImagem}
+                onClick={() => abrirQuadro(quadro)}
+              >
+                <img src={quadro.imagem} alt="imagem de capa do quadro" />
+                <p>{quadro.titulo}</p>
+              </div>
 
-                {quadro.admin == usuarioAtual.id && (
-                  <BsThreeDotsVertical
-                    className={styles.icone}
-                    onClick={() => {
-                      setAbrirModalAlterar(true);
-                      setQuadroSelecionado(quadro);
-                    }}
-                  />
-                )}
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+              {quadro.dataAtualizacao ? (
+                <span className={styles.atualizado}>
+                  {calcularTempoDesdeAtualizacao(quadro.dataAtualizacao)}
+                </span>
+              ) : (
+                ""
+              )}
+            </div>
 
-      {quadrosCompartilhados.length > 0 && (
-        <>
-          <h3 className={styles.tituloQuadros}>Quadros compartilhados</h3>
-          <ul className={styles.meusQuadros}>
-            {quadrosCompartilhados.map((quadro) => (
-              <li className={styles.itemLista} key={quadro.id}>
-                <div className={styles.infoQuadro}>
-                  <img src="https://cdn.blablacar.com/wp-content/uploads/br/2024/05/05094506/como-planejar-uma-viagem.webp" alt="imagem de cada do quadro {quadro.titulo}" />
-                  <p className={styles.tituloQuadro} onClick={() => abrirQuadro(quadro)}>{quadro.titulo}</p>
-                  {quadro.dataAtualizacao ? <span className={styles.atualizado}>{calcularTempoDesdeAtualizacao(quadro.dataAtualizacao)}</span> : "" }
-                </div>
-
-                {quadro.admin == usuarioAtual.id && (
-                  <BsThreeDotsVertical
-                    className={styles.icone}
-                    onClick={() => {
-                      setAbrirModalAlterar(true);
-                      setQuadroSelecionado(quadro);
-                    }}
-                  />
-                )}
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+            {quadro.admin == usuarioAtual.id && (
+              <BsThreeDotsVertical
+                className={styles.icone}
+                onClick={() => {
+                  setAbrirModalAlterar(true);
+                  setQuadroSelecionado(quadro);
+                }}
+              />
+            )}
+          </li>
+        ))}
+      </ul>
 
       {abrirModalAlterar && (
         <ModalAlterarQuadro
@@ -172,8 +156,14 @@ const Quadro = ({ quadros, setQuadros, usuarioAtual, setUsuarioAtual }) => {
           setAbrirModalAlterar={setAbrirModalAlterar}
           quadroSelecionado={quadroSelecionado}
           excluirQuadro={(id) => excluirQuadro(id)}
-          alterarQuadro={(quadro, titulo, idMembros) =>
-            alterarQuadro(quadro, titulo, idMembros)
+          alterarQuadro={(
+            quadro,
+            titulo,
+            idMembros,
+            imagemQuadro,
+            nomeImagem
+          ) =>
+            alterarQuadro(quadro, titulo, idMembros, imagemQuadro, nomeImagem)
           }
           excluirMembro={(id) => excluirMembro(id)}
           usuarioAtual={usuarioAtual}

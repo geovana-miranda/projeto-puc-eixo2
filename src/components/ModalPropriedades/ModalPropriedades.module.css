@@ -5,47 +5,56 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(145, 118, 170, 0.171);
 }
 
 .modal {
+    color: #5C5C5C;
     position: fixed;
-    top: 55%;
-    left: 57%;
+    top: 37%;
+    left: 69%;
     transform: translate(-50%, -50%);
-    background-color: #FFF;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px 5px #00000040;
     padding: 1em;
     border-radius: 8px;
-    width: 120px;
+    width: 160px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: start;
-    text-align: start;
+    align-items: center;
+    gap: 10px;
 
 }
 
-.modal div span {
-    font-weight: 300;
-    font-size: 0.9em;
+span {
+    font-weight: 400;
 }
 
 .data {
     border: none;
     border-bottom: 1px solid #807f7f;
-    font-size: 1.2em;
-    margin-bottom: 1em;
+    font-size: 1em;
+    width: 100%;
+    text-align: center;
+    color: #5C5C5C;
+    font-family: 'poppins';
+    margin-bottom: 10px;
+}
+
+.espaco {
+    width: 100%;
 }
 
 .prioridade {
-    margin: 3px 0;
-    background: #fff;
-    width: 120px;
-    border-radius: 13px;
+    color: #5C5C5C;
+    background: #ffffff;
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 1000px;
     border: 1px solid #807f7f;
-    height: 25px;
     font-size: 0.9em;
     text-align: center;
+    margin-top: 7px;
 }
 
 .salvar {
@@ -54,14 +63,14 @@
 }
 
 .botaoColorido {
-    width: 50px;
-    height: 25px;
-    border-radius: 1.5em;
+    width: 60%;
+    padding: 0.5em;
+    border-radius: 1000px;
+    box-shadow: 0 0 10px #00000040;
+    margin-top: 5px;
     cursor: pointer;
-    font-size: 0.7em;
     color: #FFF;
     border: none;
-    background: rgb(198,128,174);
     background: linear-gradient(90deg, rgba(198,128,174,1) 0%, rgba(151,79,207,1) 100%); 
 }
 

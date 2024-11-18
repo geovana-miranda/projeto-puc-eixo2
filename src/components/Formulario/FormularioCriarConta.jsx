@@ -5,22 +5,17 @@ import Msg from "./Msg/Msg";
 
 import semfoto from "../../assets/semfoto.png";
 
-import { useState, useContext, useRef } from "react";
+import { useState, useContext } from "react";
 import { UsuarioContext } from "../../context/UsuarioContext";
-import { MdOutlineFileUpload } from "react-icons/md";
-
 
 const Formulario = ({ cadastrarUsuario }) => {
   const { usuarios, setUsuarios } = useContext(UsuarioContext);
-
-  const inputRef = useRef(null);
 
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [imagem, setImagem] = useState(semfoto);
-  const [nomeImagem, setNomeImagem] = useState("");
   const [concordar, setConcordar] = useState(false);
   const [msg, setMsg] = useState("");
 
@@ -64,21 +59,8 @@ const Formulario = ({ cadastrarUsuario }) => {
     setEmail("");
     setSenha("");
     setConfirmarSenha("");
-    setNomeImagem("");
     setConcordar(false);
     setImagem(semfoto);
-  };
-
-  const carregarImagem = (e) => {
-    const arquivo = e.target.files[0];
-    if (arquivo) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagem(reader.result);
-      };
-      reader.readAsDataURL(arquivo);
-      setNomeImagem(arquivo.name);
-    }
   };
 
   return (
@@ -118,26 +100,6 @@ const Formulario = ({ cadastrarUsuario }) => {
             valor={confirmarSenha}
             setValor={setConfirmarSenha}
           />
-
-          <div className={styles.carregarImagem}>
-            <label>
-              <span>Imagem: {nomeImagem}</span>
-              <button
-                className={styles.botaoCarregarImagem}
-                onClick={() => inputRef.current.click()}
-              >
-                <span>Carregar imagem</span>
-                <MdOutlineFileUpload />
-              </button>
-              <input
-                type="file"
-                accept="image/*"
-                ref={inputRef}
-                onChange={carregarImagem}
-                style={{ display: "none" }}
-              />
-            </label>
-          </div>
 
         </div>
 

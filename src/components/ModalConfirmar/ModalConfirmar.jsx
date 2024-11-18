@@ -10,10 +10,11 @@ const ModalConfirmar = ({
     <>
       <section className={styles.background}>
         <div className={styles.modal}>
+          <h2 className={styles.titulo}>Aviso!</h2>
           <h3>
             Atenção: esta ação excluirá permanentemente {objeto} "{nome}".
+            <br />Deseja continuar?
           </h3>
-          <h3>Deseja continuar? </h3>
           <div className={styles.botoes}>
             <button
               className={styles.botao}

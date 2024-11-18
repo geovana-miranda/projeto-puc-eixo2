@@ -47,9 +47,6 @@
     border-radius: 3em;
 }
 
-.minhaConta select {
-    background-color: transparent;
-    color: #7D6992;
-    border: none;
-
+.icone {
+    font-size: 1.5em;
 }

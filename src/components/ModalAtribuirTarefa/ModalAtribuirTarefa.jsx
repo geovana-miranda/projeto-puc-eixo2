@@ -39,7 +39,7 @@ const ModalAtribuirTarefa = ({
               <li className={styles.itemLista} key={pessoa.id}>
                 <img src={pessoa.imagem} alt={pessoa.nome} />
                 <span>{pessoa.nome}</span>
-
+              
                 <input
                   type="checkbox"
                   value={pessoa.id}
@@ -58,7 +58,7 @@ const ModalAtribuirTarefa = ({
               setAbrirModalAtribuirTarefa(!abrirModalAtribuirTarefa)
             }
           >
-            OK
+            Salvar
           </button>
         </div>
       </div>

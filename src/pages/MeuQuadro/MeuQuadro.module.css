@@ -40,12 +40,25 @@
 .listas {
     display: flex;
     align-items: first baseline;
+    height: auto;
+    overflow-y: auto;
+    height: calc(100vh - 147px);
+}
+
+.listas::-webkit-scrollbar {
+    background: none;
+    height: 10px;
+}
+
+.listas::-webkit-scrollbar-thumb {
+    background-color: #30303050;
+    border-radius: 100px;
 }
 
 .organizacaoListas {
     margin-left: 2em;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: baseline;
     justify-content: start;
     gap: 2em;

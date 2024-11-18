@@ -2,11 +2,7 @@ import styles from "../Quadro/Quadro.module.css";
 
 import { useNavigate } from "react-router-dom";
 
-const Pesquisa = ({
-  resultadoPesquisa,
-  quadros,
-  usuarioAtual,
-}) => {
+const Pesquisa = ({ resultadoPesquisa, quadros, usuarioAtual }) => {
   const navigate = useNavigate();
 
   const abrirQuadro = (quadro) => {
@@ -15,18 +11,18 @@ const Pesquisa = ({
 
   return (
     <>
-
-      <h3 className={styles.tituloQuadros}>Resultado da pesquisa</h3>
-
       <ul className={styles.meusQuadros}>
         {resultadoPesquisa.map((quadro) => (
           <li className={styles.itemLista} key={quadro.id}>
             <div className={styles.infoQuadro}>
-              <img
-                src="https://cdn.blablacar.com/wp-content/uploads/br/2024/05/05094506/como-planejar-uma-viagem.webp"
-                alt=""
-              />
-              <p onClick={() => abrirQuadro(quadro)}>{quadro.titulo}</p>
+              <div
+                className={styles.tituloImagem}
+                onClick={() => abrirQuadro(quadro)}
+              >
+                <img src={quadro.imagem} alt="imagem de capa do quadro" />
+                <p style={{ fontWeight: "500" }}>{quadro.titulo}</p>
+              </div>
+              
             </div>
           </li>
         ))}

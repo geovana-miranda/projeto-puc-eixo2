@@ -7,7 +7,6 @@ import ModalPropriedades from "../ModalPropriedades/ModalPropriedades";
 import ModalAtribuirTarefa from "../ModalAtribuirTarefa/ModalAtribuirTarefa";
 import ModalConfirmar from "../ModalConfirmar/ModalConfirmar";
 
-
 const ModalAlterarTarefa = ({
   fecharModal,
   abrirModalAlterarTarefa,
@@ -119,12 +118,23 @@ const ModalAlterarTarefa = ({
                   >
                     Propriedades
                   </h3>
-                  <h3
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setAbrirModalAtribuirTarefa(true)}
-                  >
-                    Atribuir Tarefa
-                  </h3>
+                  {pessoas.length === 1 && (
+                    <h3
+                      style={{ color: "#ccc" }}
+                      title="Você é o único membro deste quadro no momento"
+                    >
+                      Atribuir Tarefa
+                    </h3>
+                  )}
+
+                  {pessoas.length > 1 && (
+                    <h3
+                      style={{ cursor: "pointer" }}
+                      onClick={() => setAbrirModalAtribuirTarefa(true)}
+                    >
+                      Atribuir Tarefa
+                    </h3>
+                  )}
                 </div>
               </>
             )}
@@ -138,7 +148,10 @@ const ModalAlterarTarefa = ({
           </main>
 
           <div className={styles.botoes}>
-            <button className={styles.botao} onClick={() => setAbrirModalConfirmar(true)}>
+            <button
+              className={styles.botao}
+              onClick={() => setAbrirModalConfirmar(true)}
+            >
               Excluir Tarefa
             </button>
             <button
@@ -150,13 +163,13 @@ const ModalAlterarTarefa = ({
           </div>
 
           {abrirModalConfirmar && (
-              <ModalConfirmar
-                setAbrirModalConfirmar={setAbrirModalConfirmar}
-                excluindo={() => excluirTarefa()}
-                nome={editarTituloTarefa}
-                objeto="o item"
-              />
-            )}
+            <ModalConfirmar
+              setAbrirModalConfirmar={setAbrirModalConfirmar}
+              excluindo={() => excluirTarefa()}
+              nome={editarTituloTarefa}
+              objeto="o item"
+            />
+          )}
 
           {abrirModalPropriedades && (
             <ModalPropriedades

@@ -2,6 +2,8 @@ import styles from "../ModalCriarQuadro/ModalCriarQuadro.module.css";
 
 import { useState, useContext, useRef, useEffect } from "react";
 import { UsuarioContext } from "../../context/UsuarioContext";
+import { GoPencil } from "react-icons/go";
+
 import ModalConfirmar from "../ModalConfirmar/ModalConfirmar";
 
 const ModalAlterarQuadro = ({
@@ -16,6 +18,8 @@ const ModalAlterarQuadro = ({
   const { usuarios, setUsuarios } = useContext(UsuarioContext);
 
   const [titulo, setTitulo] = useState(quadroSelecionado.titulo);
+  const [imagemQuadro, setImagemQuadro] = useState(quadroSelecionado.imagem);
+  const [nomeImagem, setNomeImagem] = useState(quadroSelecionado.nomeImagem);
   const [emailMembro, setEmailMembro] = useState("");
   const [membrosFiltrados, setMembrosFiltrados] = useState([]);
 
@@ -31,6 +35,7 @@ const ModalAlterarQuadro = ({
   );
 
   const modalRef = useRef(null);
+  const inputImagemRef = useRef(null);
 
   useEffect(() => {
     const clicouFora = (e) => {
@@ -74,7 +79,13 @@ const ModalAlterarQuadro = ({
       return;
     }
 
-    alterarQuadro(quadroSelecionado, titulo, idMembrosQuadro);
+    alterarQuadro(
+      quadroSelecionado,
+      titulo,
+      idMembrosQuadro,
+      imagemQuadro,
+      nomeImagem
+    );
     setAbrirModalAlterar(!abrirModalAlterar);
     setMsgErroAlterarQuadro("");
   };
@@ -82,6 +93,41 @@ const ModalAlterarQuadro = ({
   const excluindoQuadro = () => {
     excluirQuadro(quadroSelecionado.id);
     setAbrirModalAlterar(!abrirModalAlterar);
+  };
+
+  const carregarImagemQuadro = (e) => {
+
+    const arquivo = e.target.files[0];
+
+    if (arquivo) {
+
+      setNomeImagem(arquivo.name);
+
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const img = new Image();
+        img.src = reader.result;
+
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          const MAX_WIDTH = 400; 
+          const scaleSize = MAX_WIDTH / img.width;
+          canvas.width = MAX_WIDTH;
+          canvas.height = img.height * scaleSize;
+
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.5); 
+          setImagemQuadro(dataUrl); 
+          setNomeImagem()
+        };
+
+      };
+      
+      reader.readAsDataURL(arquivo);
+    }
   };
 
   if (abrirModalAlterar) {
@@ -97,15 +143,29 @@ const ModalAlterarQuadro = ({
               </div>
             )}
 
-            <img
-              src="https://cdn.blablacar.com/wp-content/uploads/br/2024/05/05094506/como-planejar-uma-viagem.webp"
-              alt=""
-            />
+            <div className={styles.containerImagem}>
+
+              <img src={imagemQuadro} alt={nomeImagem} />
+
+              <div className={styles.overlay}>
+                <button onClick={() => inputImagemRef.current.click()}>
+                  <GoPencil />
+                  <span>Alterar imagem</span>
+                </button>
+                <input
+                  type="file"
+                  accept="image/*"
+                  ref={inputImagemRef}
+                  onChange={carregarImagemQuadro}
+                  style={{ display: "none" }}
+                />
+              </div>
+            </div>
           </div>
 
           <div className={styles.formulario}>
-            <form onSubmit={(e) => e.preventDefault()}>
-              <label>
+            <form onSubmit={(e) => e.preventDefault()} className={styles.espaco}>
+              <label className={styles.espaco}>
                 <span className={styles.spanModal}>Nome do quadro</span>
                 <input
                   onChange={(e) => setTitulo(e.target.value)}
@@ -116,7 +176,7 @@ const ModalAlterarQuadro = ({
               </label>
             </form>
 
-            <div>
+            <div className={styles.espaco}>
               <span className={styles.spanModal}>Membros</span>
               <input
                 className={styles.inputModal}
@@ -130,9 +190,14 @@ const ModalAlterarQuadro = ({
 
                   if (emailPesquisa === "") {
                     emailsFiltrados = null;
-                  } else {                    
-                    emailsFiltrados = usuarios.filter((usuario) => (usuario.id !== usuarioAtual.id && !idMembrosQuadro.includes(usuario.id)) &&
-                      usuario.email.toLowerCase().startsWith(emailPesquisa.toLowerCase())
+                  } else {
+                    emailsFiltrados = usuarios.filter(
+                      (usuario) =>
+                        usuario.id !== usuarioAtual.id &&
+                        !idMembrosQuadro.includes(usuario.id) &&
+                        usuario.email
+                          .toLowerCase()
+                          .startsWith(emailPesquisa.toLowerCase())
                     );
                   }
                   setMembrosFiltrados(emailsFiltrados);
@@ -144,7 +209,7 @@ const ModalAlterarQuadro = ({
                 <div className={styles.dropdown}>
                   {membrosFiltrados.map((membro) => (
                     <div
-                    key={membro.id}
+                      key={membro.id}
                       className={styles.dropdownItem}
                       onClick={() => adicionandoMembro(membro)}
                     >
@@ -179,7 +244,7 @@ const ModalAlterarQuadro = ({
                 })}
             </div>
 
-            <div className={styles.botoes}>
+            <div className={styles.botoes} >
               <button
                 className={styles.botao}
                 onClick={() => setAbrirModalConfirmar(true)}
@@ -193,15 +258,14 @@ const ModalAlterarQuadro = ({
                 Salvar
               </button>
 
-            {abrirModalConfirmar && (
-              <ModalConfirmar
-                setAbrirModalConfirmar={setAbrirModalConfirmar}
-                excluindo={excluindoQuadro}
-                nome={titulo}
-                objeto="o quadro"
-              />
-            )}
-
+              {abrirModalConfirmar && (
+                <ModalConfirmar
+                  setAbrirModalConfirmar={setAbrirModalConfirmar}
+                  excluindo={excluindoQuadro}
+                  nome={titulo}
+                  objeto="o quadro"
+                />
+              )}
             </div>
           </div>
         </div>

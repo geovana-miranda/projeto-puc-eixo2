@@ -97,12 +97,20 @@
     height: 50px;
 }
 
-.container h3 {
+.tituloQuadros {
     color: #FFF;
     font-weight: 300;
-    margin: 0.5em 1em;
+    margin: 1.2em 1em 0.5em 1em;
 }
 
 .quadros {
     width: 100%;
+}
+
+
+.naoEncontrado {
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
 }

@@ -1,18 +1,16 @@
 .containerLista {
     background-color: #FFF;
-    width: 220px;
+    width: 250px;
     height:auto;
     border-radius: 0.8em;
-    -webkit-box-shadow: 0px 0px 5px 3px rgba(217,217,217,1);
-    -moz-box-shadow: 0px 0px 5px 3px rgba(217,217,217,1);
-    box-shadow: 0px 0px 5px 3px rgba(217,217,217,1);
+    box-shadow: 0px 0px 10px #00000040;
 }
 
 .cabecalhoLista {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 220px;
+    width: 250px;
     border-top-left-radius: 0.8em;
     border-top-right-radius: 0.8em;
     background: rgb(151,79,207);
@@ -23,27 +21,50 @@
     box-sizing: border-box;
 }
 
+.tituloLista {
+    font-weight: 400;
+    font-size: 1.1em;
+}
+
 .itemLista {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 0.4em 1em 0.4em 1.4em;
+    padding: 8px 15px;
     box-sizing: border-box;
     color: #5C5C5C;
     font-weight: 400;
     border-bottom: 1px solid #5c5c5c33;
+    gap: 10px;
+}
+
+.tarefa {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.membros {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .prioridadeBaixa {
-    color: green;
+    color: #A3FF94;
 }
 
 .prioridadeMedia {
-    color: yellow;
+    color: #F0F1B2;
 }
 
 .prioridadeAlta {
-    color: red;
+    color: #FF5050;
 }
 
 .inputLista {
@@ -57,4 +78,12 @@
     border: none;
     outline: none;
 
+}
+
+.membroResponsavel{
+    text-align: right;    
+    width: 30px;
+    height: 30px;
+    border-radius: 1000px;
+    object-fit: cover;
 }

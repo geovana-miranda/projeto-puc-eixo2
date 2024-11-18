@@ -4,7 +4,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(145, 118, 170, 0.514);
+    background-color: #03091333;
+    backdrop-filter: blur(3px);
 }
 
 .modal {
@@ -13,40 +14,46 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #FFF;
-    padding: 0.5em;
-    border-radius: 8px;
-    width: 400px;
+    box-shadow: 0 0 10px 5px #00000040;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 15px;
+    width: 320px;
+}
+
+.titulo {
+    color:#5C5C5C;
+    text-align: center;
 }
 
 .modal h3 {
-    color: #464646;
+    color:#5C5C5C;
     font-weight: 400;
     font-size: 0.9em;
+    text-align: center;
 }
 
 .botoes {
-    width: 400px;
     display: flex;
     align-items: center;
     text-align: center;
-    justify-content: center;
-    gap: 1em;
+    justify-content: space-between;
 }
 
 .botoes button {
-    width: 120px;
-    height: 30px;
-    border-radius: 1em;
+    width: 45%;
+    border-radius: 1000px;
     cursor: pointer;
-    font-size: 0.9em;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    font-size: 1em;
+    padding: 0.4em;
 }
 
 .botao {
-    border: 1px solid #464646;
+    border: 1px solid #5c5c5c;
     background: none;
-    color: #464646;
+    color: #5c5c5c;
 }
 
 .botaoColorido {
@@ -54,4 +61,5 @@
         border: none;
         background: rgb(198,128,174);
         background: linear-gradient(90deg, rgba(198,128,174,1) 0%, rgba(151,79,207,1) 100%); 
+        box-shadow: 0 0 19px #00000040;
 }
