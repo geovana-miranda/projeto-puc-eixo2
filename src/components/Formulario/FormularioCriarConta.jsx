@@ -19,6 +19,9 @@ const Formulario = ({ cadastrarUsuario }) => {
   const [concordar, setConcordar] = useState(false);
   const [msg, setMsg] = useState("");
 
+  console.log(concordar);
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -27,7 +30,7 @@ const Formulario = ({ cadastrarUsuario }) => {
     const usuarioExiste = usuarios.find((item) => email === item.email);
 
     if (usuarioExiste) {
-      setMsg({ mensagem: "Usuário já cadastrado", cor: "vermelho" });
+      setMsg({ mensagem: "Email já cadastrado", cor: "vermelho" });
       return;
     } else {
       setMsg("");
@@ -61,6 +64,7 @@ const Formulario = ({ cadastrarUsuario }) => {
     setConfirmarSenha("");
     setConcordar(false);
     setImagem(semfoto);
+    console.log(concordar);
   };
 
   return (
@@ -105,7 +109,7 @@ const Formulario = ({ cadastrarUsuario }) => {
 
         <div className={styles.concordar}>
           <label>
-            <input type="checkbox" onChange={(e) => setConcordar(e.target.checked)} className={styles.botaoConcordar}/>
+            <input type="checkbox" onChange={(e) => setConcordar(e.target.checked)} checked={concordar} className={styles.botaoConcordar}/>
             <span className={styles.checkBox}></span>
           </label>
           <p>

@@ -289,6 +289,7 @@ const ModalCriarQuadro = ({
                   setEmailMembro("");
                   setAbrirDropDrown(false);
                   setMembros([]);
+                  setImagemQuadro(imagemPadrao);
                 }}
               >
                 Cancelar

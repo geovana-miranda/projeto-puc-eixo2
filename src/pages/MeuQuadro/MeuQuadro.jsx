@@ -76,8 +76,10 @@ const MeuQuadro = () => {
   }, [listas]);
 
   const criandoLista = (titulo) => {
-    setListas([...listas, { titulo: titulo, id: uuidv4() }]);
-    setTituloLista("");
+    if (titulo) {
+      setListas([...listas, { titulo: titulo, id: uuidv4() }]);
+      setTituloLista("");
+    }
     setCriarLista(false);
   };
 

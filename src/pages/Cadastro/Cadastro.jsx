@@ -11,8 +11,8 @@ import FormularioLogar from "../../components/Formulario/FormularioLogar";
 const Cadastro = () => {
   const { usuarios, setUsuarios } = useContext(UsuarioContext);
 
-  const [nomeBotao, setNomeBotao] = useState("Já possui conta?");
-  const [formLogar, setformLogar] = useState(false);
+  const [nomeBotao, setNomeBotao] = useState("Não possui conta?");
+  const [formLogar, setformLogar] = useState(true);
   const [adicionandoUsuario, setAdicionandoUsuario] = useState(false);
 
   useEffect(() => {
