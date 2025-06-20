@@ -1,0 +1,70 @@
+.pagina {
+    width: 100vw;
+    min-height: 100vh;
+    background-image: 
+    linear-gradient(to bottom right, #ffffffe6, #ffffffe6, #ffffffe6),
+    url(../../assets/textura.jpg);
+    background-size: cover, cover;
+    background-repeat: repeat;
+}
+
+.nomeQuadro {
+    width: fit-content;
+    margin: 1em 2em;
+    border-radius: 100em;
+    background: linear-gradient(90deg, rgba(198,128,174,0.8) 0%, rgba(151,79,207,0.8) 100%);
+    color: #FFF;
+    box-shadow: 0 0 10px #00000040;
+    display: flex;
+    align-items: center;
+    padding: 8px 20px;
+    gap: 200px;
+}
+
+.nomeQuadro h3 {
+    font-weight: 400;
+}
+
+.imagemMembros {
+    display: flex;
+    gap: 0.5em;
+}
+
+.fotoMembros {
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+}
+
+.listas {
+    display: flex;
+    align-items: first baseline;
+    height: auto;
+    overflow-y: auto;
+    height: calc(100vh - 147px);
+}
+
+.listas::-webkit-scrollbar {
+    background: none;
+    height: 10px;
+}
+
+.listas::-webkit-scrollbar-thumb {
+    background-color: #30303050;
+    border-radius: 100px;
+}
+
+.organizacaoListas {
+    margin-left: 2em;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    justify-content: start;
+    gap: 2em;
+}
+
+.organizacaoListas ul li {
+    list-style-type: none;
+    width: 100%;
+}

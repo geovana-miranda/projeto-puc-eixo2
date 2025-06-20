@@ -1,0 +1,101 @@
+.formulario {
+    border: none;
+    width: 370px; 
+    background-color: #D9D9D980;
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+    box-shadow: 0 0 10px 5px #00000040;
+}
+
+.formulario h3 {
+    color: #FFF;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.concordar {
+    width: 330px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFF;
+    margin: 5px 0;
+    gap: 10px;
+}
+
+.concordar label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.concordar p {
+    font-size: 0.78em;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    text-align: left;
+}
+
+.concordar p span {
+    text-decoration: underline;
+}
+
+.botaoConcordar {
+    display: none;
+}
+
+.checkBox {
+    width: 18px;
+    height: 18px;
+    border: solid #FFFFFF80;
+    border-radius: 5px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.checkBox:hover {
+    transform: scale(1.2);
+}
+
+.botaoConcordar:checked + .checkBox::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 13px;
+    height: 13px;
+    border-radius: 1px;
+    background-color: #FFFFFF80;
+    transform: translate(-50%, -50%);
+    
+}
+
+.botaoFinalizar {
+    color: #FFF;
+    font-family: "Poppins", sans-serif;
+    border: none;
+    border-radius: 100em;
+    background: rgb(198,128,174);
+    background: linear-gradient(90deg, rgba(198,128,174,1) 0%, rgba(151,79,207,1) 100%); 
+    width: 100%;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 0.8em;
+    background-color: blue;
+    box-shadow: 0 0 19px #00000040;
+    padding: 0.5em;
+    transition: transform 0.3s ease;
+}
+
+.botaoFinalizar:hover {
+    transform: scale(1.1);
+}
+
+.botaoFinalizar a {
+    text-decoration: none;
+    color: #FFF;
+}
