@@ -6,7 +6,7 @@ Na época em que desenvolvi este trabalho, meu conhecimento em React era bastant
 
 É até engraçado lembrar como, ao finalizá‑lo, mostrei tudo com orgulho para todos os meus amigos; pouco depois, durante o bootcamp de React da XP Educação, percebi como eu tinha feito tudo errado e acabei removendo o repositório do meu GitHub por vergonha. Hoje, ao revisitar este código, vejo claramente minha evolução e entendo o valor de cada erro que cometi. Por isso decidi publicá‑lo novamente, em modo público e sem filtros, como um registro honesto da minha jornada de aprendizado.
 
-## Alguns dos erros que notei:
+## Reflexões sobre o código antigo
 
 ### LocalStorage espalhado
 Em vez de centralizar a lógica de leitura e gravação no contexto de usuarios, tratei a persistência em localStorage em praticamente todos os componentes. Hoje eu teria criado um único ponto de salvamento e carregamento de dados dentro do contexto, além de criar uma função para validar e exportar o contexto.
